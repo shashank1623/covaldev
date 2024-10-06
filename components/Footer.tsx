@@ -78,7 +78,7 @@ export default function Footer() {
                         </li>
                         <li>
                             <a
-                                href="#"
+                                href="https://x.com/covaldev"
                                 className="text-gray-400 hover:text-white transition-colors flex items-center"
                             >
                                 <Twitter className="w-4 h-4 mr-2" /> Twitter
@@ -86,7 +86,7 @@ export default function Footer() {
                         </li>
                         <li>
                             <a
-                                href="#"
+                                href="https://www.linkedin.com/company/104128953"
                                 className="text-gray-400 hover:text-white transition-colors flex items-center"
                             >
                                 <Linkedin className="w-4 h-4 mr-2" /> LinkedIn
