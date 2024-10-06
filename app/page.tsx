@@ -1,7 +1,8 @@
+import DeepDive from "@/components/DeepDive"
 import Footer from "@/components/Footer"
 import Hero from "@/components/Hero"
+import LaunchEvaluations from "@/components/LaunchEvaluations"
 import Navbar from "@/components/Navbar"
-import { Button } from "@/components/ui/button"
 import WhatWeDo from "@/components/WhatWeDo"
 
 export default function Home() {
@@ -11,6 +12,10 @@ export default function Home() {
       <Hero/>
 
       <WhatWeDo/>
+
+      <DeepDive/>
+      
+      <LaunchEvaluations/>
 
       <Footer/>
     </div>
