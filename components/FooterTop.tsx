@@ -5,7 +5,7 @@ import BookACall from "./BookACall";
 
 export default function FooterTop() {
     return (
-        <div className="relative flex items-center justify-center min-h-[50vh] overflow-hidden px-4 sm:px-6 lg:px-8 bg-black">
+        <div className="relative flex items-center text-white justify-center min-h-[50vh] overflow-hidden px-4 sm:px-6 lg:px-8 bg-black">
             {/* Grid background with custom color and dual circles */}
             <div
                 className="absolute inset-0 w-full h-full pointer-events-none z-0"
