@@ -1,5 +1,6 @@
 import DeepDive from "@/components/DeepDive"
 import Footer from "@/components/Footer"
+import FooterTop from "@/components/FooterTop"
 import Hero from "@/components/Hero"
 import LaunchEvaluations from "@/components/LaunchEvaluations"
 import Navbar from "@/components/Navbar"
@@ -16,6 +17,8 @@ export default function Home() {
       <DeepDive/>
       
       <LaunchEvaluations/>
+
+      <FooterTop/>
 
       <Footer/>
     </div>
