@@ -8,7 +8,7 @@ import WhatWeDo from "@/components/WhatWeDo"
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen text-white w-full bg-black">
+    <div className="relative min-h-screen w-full bg-black">
       <Navbar/>
       <Hero/>
 
