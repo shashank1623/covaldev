@@ -1,32 +1,33 @@
-// components/Navbar.tsx
-
 "use client"
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Moon } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 
 export default function Navbar() {
-    const [isVisible, setIsVisible] = useState(false)
+    const [isVisible, setIsVisible] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage mobile menu
 
     useEffect(() => {
         const toggleVisibility = () => {
             if (window.pageYOffset > 300) {
-                setIsVisible(true)
+                setIsVisible(true);
             } else {
-                setIsVisible(false)
+                setIsVisible(false);
             }
-        }
+        };
 
-        window.addEventListener('scroll', toggleVisibility)
+        window.addEventListener('scroll', toggleVisibility);
+        return () => window.removeEventListener('scroll', toggleVisibility);
+    }, []);
 
-        return () => window.removeEventListener('scroll', toggleVisibility)
-    }, [])
+    const handleMenuToggle = () => {
+        setIsMenuOpen(prev => !prev);
+    };
 
     return (
         <nav
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${isVisible
-                ? 'bg-black/90 backdrop-blur-md shadow-md'
+                ? ' backdrop-blur-md shadow-lg'
                 : 'bg-transparent'
                 }`}
         >
@@ -42,17 +43,40 @@ export default function Navbar() {
                             <span className="text-white font-bold text-lg">Coval</span>
                         </Link>
                     </div>
-                    <div className="hidden md:flex space-x-4">
-                        <Link href="/pricing" className="text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-semibold">
-                            Pricing
+
+                    {/* Hamburger menu icon for mobile */}
+                    <div className="md:hidden flex items-center">
+                        <button
+                            onClick={handleMenuToggle}
+                            className="text-white focus:outline-none"
+                            aria-label="Toggle navigation"
+                        >
+                            {isMenuOpen ? (
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            ) : (
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                                </svg>
+                            )}
+                        </button>
+                    </div>
+
+                    {/* Desktop navigation links */}
+                    <div className={`hidden md:flex space-x-4 ${isMenuOpen ? 'block' : 'hidden'}`}>
+                        <Link href="/" className="text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-semibold">
+                            Home
                         </Link>
-                        <Link href="/blog" className="text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-semibold">
-                            Blog
+                        <Link href="/about" className="text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-semibold">
+                            About Us
                         </Link>
                         <Link href="/contact" className="text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-semibold">
                             Contact
                         </Link>
                     </div>
+
+                    {/* Desktop buttons */}
                     <div className="hidden md:flex items-center space-x-4">
                         <Button variant="ghost" className="text-gray-300 rounded-full hover:bg-gray-500 transition-colors">
                             Login
@@ -63,6 +87,29 @@ export default function Navbar() {
                     </div>
                 </div>
             </div>
+
+            {/* Mobile navigation links */}
+            {isMenuOpen && (
+                <div className="md:hidden bg-transparent">
+                    <Link href="/" className="block text-gray-300 hover:text-white transition-colors px-4 py-2 text-sm font-semibold">
+                        Home
+                    </Link>
+                    <Link href="/about" className="block text-gray-300 hover:text-white transition-colors px-4 py-2 text-sm font-semibold">
+                        About Us
+                    </Link>
+                    <Link href="/contact" className="block text-gray-300 hover:text-white transition-colors px-4 py-2 text-sm font-semibold">
+                        Contact
+                    </Link>
+                    <div className="flex flex-col items-start p-4">
+                        <Button variant="ghost" className="text-gray-300 rounded-full hover:bg-gray-500 transition-colors mb-2">
+                            Login
+                        </Button>
+                        <Button className="bg-gray-700 text-white border border-gray-500 px-4 py-2 rounded-full hover:bg-black transition-colors">
+                            Sign Up
+                        </Button>
+                    </div>
+                </div>
+            )}
         </nav>
     )
 }
