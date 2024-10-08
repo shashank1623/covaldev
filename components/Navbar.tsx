@@ -1,34 +1,34 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import { Menu, X } from 'lucide-react'
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
-  const [isVisible, setIsVisible] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.pageYOffset > 300) {
-        setIsVisible(true)
+        setIsVisible(true);
       } else {
-        setIsVisible(false)
+        setIsVisible(false);
       }
-    }
+    };
 
-    window.addEventListener('scroll', toggleVisibility)
-    return () => window.removeEventListener('scroll', toggleVisibility)
-  }, [])
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
 
   const handleMenuToggle = () => {
-    setIsMenuOpen(prev => !prev)
-  }
+    setIsMenuOpen(prev => !prev);
+  };
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out ${
         isVisible ? 'backdrop-blur-md bg-black/50 shadow-lg' : 'bg-transparent'
       }`}
     >
@@ -77,7 +77,7 @@ export default function Navbar() {
               className="text-white"
               aria-label="Toggle navigation"
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-white" />}
             </Button>
           </div>
         </div>
@@ -85,7 +85,7 @@ export default function Navbar() {
 
       {/* Mobile navigation links */}
       {isMenuOpen && (
-        <div className="md:hidden bg-transparent backdrop-blur-md">
+        <div className="md:hidden bg-transparent backdrop-blur-md w-full">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link href="/" className="block text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md text-base font-medium">
               Home
@@ -112,5 +112,5 @@ export default function Navbar() {
         </div>
       )}
     </nav>
-  )
+  );
 }
