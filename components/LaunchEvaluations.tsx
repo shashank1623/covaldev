@@ -1,11 +1,13 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react'
-import Image from 'next/image'
-import { Card, CardContent } from "@/components/ui/card"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-import { Github, Terminal } from "lucide-react"
-import Result3 from '@/components/assets/Launch.webp'
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Github } from "lucide-react";
+import Result3 from '@/components/assets/Launch.webp';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
     return (
@@ -16,18 +18,22 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode; titl
                 <p className="text-gray-400">{description}</p>
             </CardContent>
         </Card>
-    )
+    );
 }
 
 export default function LaunchEvaluations() {
-    const [isDialogOpen, setIsDialogOpen] = useState(false)
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    useEffect(() => {
+        AOS.init({ duration: 1000 });
+    }, []);
 
     return (
         <section className="bg-black text-white py-16 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    {/* Left Side: Heading and Content */}
-                    <div className="space-y-6">
+
+                    {/* Left Side: Heading and Content with fade-right animation */}
+                    <div className="space-y-6" data-aos="fade-right">
                         <h2 className="text-3xl sm:text-4xl font-bold bg-clip-text text-white bg-gradient-to-r from-blue-400 to-purple-600">
                             Launch Evaluations
                         </h2>
@@ -60,14 +66,13 @@ export default function LaunchEvaluations() {
                                 title="API Access"
                                 description="Launch evaluations via API or in our dashboard."
                             />
-
                         </div>
                     </div>
 
-                    {/* Right Side: Image */}
+                    {/* Right Side: Image with fade-left animation */}
                     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                         <DialogTrigger asChild>
-                            <Card className="relative overflow-hidden cursor-pointer transition-transform hover:scale-105">
+                            <Card className="relative overflow-hidden cursor-pointer transition-transform hover:scale-105" data-aos="fade-left">
                                 <div className="absolute inset-0 "></div>
                                 <CardContent className="p-0">
                                     <Image
@@ -93,5 +98,5 @@ export default function LaunchEvaluations() {
                 </div>
             </div>
         </section>
-    )
+    );
 }
