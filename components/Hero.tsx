@@ -1,8 +1,18 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { Spotlight } from "./ui/spotlight";
 import BookACall from "./BookACall";
+
 export default function Hero() {
+    useEffect(() => {
+        AOS.init({
+            duration: 1500, // Animation duration in ms
+            once: true,     // Whether animation should happen only once
+        });
+    }, []);
+
     return (
         <main className="relative flex items-center justify-center min-h-screen overflow-hidden px-4 sm:px-6 lg:px-8 bg-black">
             {/* Grid background with custom color and dual circles */}
@@ -19,18 +29,23 @@ export default function Hero() {
 
             {/* Spotlight feature */}
             <Spotlight
-                className="absolute -top-32 left-0 md:left-60 md:-top-20 lg:-top-40 lg:left-0 xl:left-60" // Responsive positioning
+                className="absolute -top-32 left-0 md:left-60 md:-top-20 lg:-top-40 lg:left-0 xl:left-60"
                 fill="white"
             />
-            <div className="max-w-5xl mx-auto relative z-10 text-center">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-white bg-gradient-to-b from-blue-400 to-purple-600">
-                    Simulation & evaluation for conversational agents
-                </h1>
 
-                <p className="text-base sm:text-lg md:text-xl mb-8 text-neutral-300 max-w-3xl mx-auto">
-                    Streamline your chat and voice assistant development with CI/CD.
-                </p>
-                <BookACall title="Book A Demo" />
+            <div className="max-w-5xl mx-auto relative z-10 text-center">
+                {/* Apply fade-down animation to text content */}
+                <div data-aos="fade-down">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-white bg-gradient-to-b from-blue-400 to-purple-600">
+                        Simulation & evaluation for conversational agents
+                    </h1>
+
+                    <p className="text-base sm:text-lg md:text-xl mb-8 text-neutral-300 max-w-3xl mx-auto">
+                        Streamline your chat and voice assistant development with CI/CD.
+                    </p>
+
+                    <BookACall title="Book A Demo" />
+                </div>
             </div>
         </main>
     );
