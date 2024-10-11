@@ -28,9 +28,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out ${
-        isVisible ? 'backdrop-blur-md bg-black/50 shadow-lg' : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out ${isVisible ? 'backdrop-blur-md bg-black/50 shadow-lg' : 'bg-transparent'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -60,12 +59,14 @@ export default function Navbar() {
 
           {/* Desktop buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" className="text-gray-300 rounded-full hover:bg-gray-700 transition-colors">
-              Login
-            </Button>
-            <Button className="bg-gray-700 text-white border border-gray-500 px-4 py-2 rounded-full hover:bg-black transition-colors">
-              Sign Up
-            </Button>
+            <Link href='/signin' className='w-full text-gray-300 hover:bg-gray-700 hover:text-white hover:rounded-full transition-colors px-3 py-2 rounded-md text-base font-medium'>
+              Sign in
+            </Link>
+            <Link href="/signup" passHref>
+              <Button className="bg-gray-700 text-white border border-gray-500 px-4 py-2 rounded-full hover:bg-black transition-colors">
+                Sign Up
+              </Button>
+            </Link>
           </div>
 
           {/* Hamburger menu icon for mobile */}
@@ -99,14 +100,16 @@ export default function Navbar() {
           </div>
           <div className="pt-4 pb-3 border-t border-gray-700">
             <div className="flex items-center px-5">
-              <Button variant="ghost" className="w-full text-gray-300 hover:bg-gray-700 hover:text-white transition-colors px-3 py-2 rounded-md text-base font-medium">
-                Login
-              </Button>
+              <Link href='/signin' className='w-full text-gray-300 hover:bg-gray-700 hover:text-white transition-colors px-3 py-2 rounded-md text-base font-medium'>
+                Sign in
+              </Link>
             </div>
             <div className="mt-3 px-2 space-y-1">
-              <Button className="w-full bg-gray-700 text-white border border-gray-500 px-3 py-2 rounded-full hover:bg-black transition-colors">
-                Sign Up
-              </Button>
+              <Link href="/signup" passHref>
+                <Button className="bg-gray-700 text-white border border-gray-500 px-4 py-2 rounded-full hover:bg-black transition-colors">
+                  Sign Up
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
