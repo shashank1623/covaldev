@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Github } from "lucide-react"
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
 interface AuthFormProps {
     mode: 'signup' | 'signin'
@@ -13,10 +15,18 @@ export default function Auth({ mode }: AuthFormProps) {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const router = useRouter();
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         console.log({ name, email, password })
+
+        const response = await axios.post('http://localhost:3000/api/user',{
+            name,
+            email,
+            password
+        })
+        router.push('/dashboard')
     }
 
     const title = mode === 'signup' ? 'Sign up for an account' : 'Sign in to your account'
